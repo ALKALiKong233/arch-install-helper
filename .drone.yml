@@ -9,7 +9,8 @@ steps:
 - name: setup&build
   image: ubuntu:latest
   commands:
-    - apt install libllvm clang make
+    - apt update
+    - apt install -y libllvm10 clang-10 cmake
     - make
 - name: publish
   image: plugins/github-release
