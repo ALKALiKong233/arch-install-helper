@@ -44,9 +44,9 @@ void dechoosing()
 
 void optimus()
 {
-   printf("Do you need Optimus-Manager? [y/n] (fuck nvidia) \n");
+   printf("Do you need Optimus-Manager? [1 for yes, 2 for not] (fuck nvidia) \n");
    scanf("%d", &ifoptimus);
-   if( ifoptimus == 'y' )
+   if( ifoptimus == 1 )
    {
       system("pacman -S optimus-manager optimus-manager-qt");
       system("systemctl enable optimus-manager");

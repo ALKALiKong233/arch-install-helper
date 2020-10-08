@@ -1,0 +1,22 @@
+kind: pipeline
+name: helper_build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: setup&build
+  image: ubuntu:latest
+  commands:
+    - apt install libllvm clang make
+    - make
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: github_token
+    files: out/*
+  when:
+    event: tag
+    
