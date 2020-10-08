@@ -1,10 +1,11 @@
-live : live.o
-	mv out/live.o out/live
-.PHONY: live
+helper : helper.o
+	mv out/helper.o out/helper
+.PHONY: helper
 
-live.o : live.c before/cfdisk.c before/installing.c
+helper.o : helper.c before/cfdisk.c before/installing.c chroot/locale.c chroot/user.c
 	-mkdir out
-	gcc -o out/live.o live.c before/cfdisk.c before/installing.c
+	gcc -o out/helper.o helper.c before/cfdisk.c before/installing.c \
+	chroot/locale.c chroot/user.c chroot/apps.c
 
 clean :
 	rm -rf out
