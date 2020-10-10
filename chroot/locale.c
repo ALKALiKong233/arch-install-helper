@@ -10,7 +10,7 @@ void locale()
    system("hwclock --systohc");
    FILE *localefile;
    localefile = fopen(
-      "/etc/locale.gen", "w+"
+      "/etc/locale.gen", "a+"
    );
    fputs("\nen_US.UTF-8 UTF-8\n", localefile);
    fputs("en_SG.UTF-8 UTF-8\n", localefile);

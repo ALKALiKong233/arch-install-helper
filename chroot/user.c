@@ -15,7 +15,7 @@ void user()
    system("passwd ${username}");
    FILE *sudoersfile;
    sudoersfile = fopen(
-      "/etc/sudoers", "w+"
+      "/etc/sudoers", "a+"
    );
    fputs("\n%wheel      ALL=(ALL) NOPASSWD: ALL\n", sudoersfile);
    fclose(sudoersfile);
