@@ -1,15 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 char hostname;
 
 void locale()
 {
    system("ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime");
    system("hwclock --systohc");
-   system("echo 'en_US.UTF-8' > /etc/locale.gen");
-   system("echo 'en_SG.UTF-8' > /etc/locale.gen");
-   system("echo 'zh_CN.UTF-8' > /etc/locale.gen");
+   FILE *localefile;
+   localefile = fopen(
+      "/etc/pacman.conf", "w+"
+   );
+   fputs("\nen_US.UTF-8\n", localefile);
+   fputs("en_SG.UTF-8\n", localefile);
+   fputs("zh_CN.UTF-8\n", localefile);
+   fclose(localefile);
    system("locale-gen");
    system("echo 'LANG=en_SG.UTF-8' > /etc/locale.conf");
    printf("What host name do you want to set?\n");
