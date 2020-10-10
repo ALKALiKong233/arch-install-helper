@@ -8,8 +8,13 @@ void optimus();
 
 void apps()
 {
-   system("echo '[archlinuxcn]' > /etc/pacman.conf");
-   system("echo 'Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch' > /etc/pacman.conf");
+   FILE *pacmanfile;
+   pacmanfile = fopen(
+      "/etc/pacman.conf", "a+"
+   );
+   fputs("\n[archlinuxcn]\n", pacmanfile);
+   fputs("Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch\n", pacmanfile);
+   fclose(pacmanfile);
    system("pacman -Syu archlinuxcn-keyring");
    system("rm -fr /etc/pacman.d/gnupg");
    system("pacman-key --init");
