@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-char disk1, mnt, esp, swap;
+char disk1, mnt, esp, swap, grubins;
 int ifuefi, ifswap;
 void mountmnt();
 void mountesp();
@@ -43,6 +43,9 @@ void mountesp ()
       system("mkfs.fat -F32 ${esp}");
       system("mount ${esp} /mnt/boot/efi");
    }
+   printf("Type a disk to install grub\n");
+   scanf("%s",&grubins);
+   setenv("grubins", &grubins, 1);
 }
 
 void swapon ()

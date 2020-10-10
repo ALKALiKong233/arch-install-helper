@@ -3,8 +3,10 @@
 #include <string.h>
 int dechoose;
 int ifoptimus;
+int ifuefiboot;
 void dechoosing();
 void optimus();
+void bootloader();
 
 void apps()
 {
@@ -24,6 +26,7 @@ void apps()
    system("systemctl enable NetworkManager");
    dechoosing();
    optimus();
+   bootloader();
 }
 
 void dechoosing()
@@ -56,4 +59,20 @@ void optimus()
       system("pacman -S optimus-manager optimus-manager-qt");
       system("systemctl enable optimus-manager");
    }
+}
+
+void bootloader()
+{
+   printf("Do you use UEFI to boot? 1 for yes or 2 for no\n");
+   scanf("%d", &ifuefiboot);
+   switch (ifuefiboot)
+   {
+   case 1:
+      system("grub-install ${grubins}");
+      break;
+   case 2:
+      system("grub-install --target=i386-pc ${grubins}");
+      break;
+   }
+   system("grub-mkconfig -o /boot/grub/grub.cfg");
 }
