@@ -41,11 +41,11 @@ void dechoosing()
       case 2:system("pacman -S plasma kde-applications sddm sddm-kcm");
          system("systemctl enable sddm");
          break;
-      case 3:system("pacman -S xfce4 xfce4-goodies sddm");
-         system("systemctl enable sddm");
-         break;
-      case 4:system("pacman -S lxde lxdm");
+      case 3:system("pacman -S lxde lxdm");
          system("systemctl enable lxdm");
+         break;
+      case 4:system("pacman -S xfce4 xfce4-goodies sddm");
+         system("systemctl enable sddm");
          break;
     }
 }
