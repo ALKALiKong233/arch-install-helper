@@ -9,12 +9,18 @@ void swapon();
 
 void cfdisk ()
 {
-   system("fdisk -l");
-   printf("Type a disk here\n");
-   scanf("%s",&disk1);
-   setenv("disk1", &disk1, 1);
-   system("cfdisk ${disk1}");
-   system("fdisk -l");
+   int cpt=1;
+   while( cpt == 1 )
+   {
+      system("fdisk -l");
+      printf("Type a disk here to partition\n");
+      scanf("%s",&disk1);
+      setenv("disk1", &disk1, 1);
+      system("cfdisk ${disk1}");
+      system("fdisk -l");
+      printf("Continue partition other disks? 1 for yes, 2 for no\n");
+      scanf("%d",&cpt);
+   };
    mountmnt();
    mountesp();
    swapon();
